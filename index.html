@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>FlipperDelux</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #05030f; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; color: #e8e6ff; }
+    canvas { display: block; }
+    #hud {
+      position: fixed; inset: 0; pointer-events: none;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 18px 24px; box-sizing: border-box;
+      text-shadow: 0 0 12px rgba(120, 80, 255, .8);
+      user-select: none;
+    }
+    #topbar { display: flex; justify-content: space-between; align-items: baseline; }
+    #score { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #9df; }
+    #hiscore { font-size: 15px; opacity: .75; margin-top: 2px; letter-spacing: 1px; }
+    #balls { font-size: 22px; letter-spacing: 4px; color: #f7a; }
+    #message {
+      align-self: center; margin-bottom: 12vh; text-align: center;
+      font-size: 26px; font-weight: 700; letter-spacing: 3px; color: #ffd75e;
+      text-shadow: 0 0 16px rgba(255, 180, 40, .9);
+      animation: pulse 1.4s ease-in-out infinite;
+      white-space: pre-line;
+    }
+    #message:empty { display: none; }
+    @keyframes pulse { 50% { opacity: .45; } }
+    #power {
+      position: fixed; right: 22px; bottom: 22px; width: 14px; height: 160px;
+      border: 2px solid rgba(255,255,255,.35); border-radius: 7px; overflow: hidden;
+      display: none;
+    }
+    #power > div {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 0%;
+      background: linear-gradient(to top, #2f6, #fe3, #f43);
+    }
+    #help {
+      align-self: center; font-size: 13px; opacity: .55; letter-spacing: 1px;
+    }
+    #launchBtn {
+      position: fixed; right: 16px; bottom: 16px; z-index: 5;
+      padding: 18px 22px; font-size: 18px; font-weight: 700; letter-spacing: 2px;
+      color: #ffd75e; background: rgba(40, 20, 80, .7);
+      border: 2px solid #ffd75e; border-radius: 12px;
+      display: none; touch-action: none;
+    }
+    @media (pointer: coarse) { #launchBtn { display: block; } #help { display: none; } }
+  </style>
+</head>
+<body>
+  <div id="hud">
+    <div id="topbar">
+      <div>
+        <div id="score">0</div>
+        <div id="hiscore">HI 0</div>
+      </div>
+      <div id="balls">●●●</div>
+    </div>
+    <div id="message"></div>
+    <div id="help">A / &larr; left flipper &nbsp;·&nbsp; L / &rarr; right flipper &nbsp;·&nbsp; hold SPACE to launch &nbsp;·&nbsp; R restart</div>
+  </div>
+  <div id="power"><div></div></div>
+  <button id="launchBtn">LAUNCH</button>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
